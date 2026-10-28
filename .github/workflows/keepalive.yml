@@ -1,0 +1,18 @@
+# เรียกฐานข้อมูล Supabase ทุก 3 วัน กันโปรเจกต์แบบฟรีหยุดอัตโนมัติ
+# ตั้งค่า Secrets ใน GitHub: SUPABASE_URL (เช่น https://xxxx.supabase.co) และ SUPABASE_ANON_KEY
+name: keepalive
+on:
+  schedule:
+    - cron: '17 3 */3 * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        env:
+          URL: ${{ secrets.SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then echo "ยังไม่ได้ตั้ง secrets — ข้าม"; exit 0; fi
+          curl -fsS -X POST "$URL/rest/v1/rpc/ping" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" -d '{}'
