@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e0457b">
+<title>สมัครใช้งาน — โปรแกรมแจ้งผลการประเมินความสามารถผู้เรียน ปฐมวัย 2568</title>
+<script src="js/theme.js?v=1"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/app.css?v=1">
+<link rel="stylesheet" href="css/register.css?v=1">
+</head>
+<body class="reg">
+<header class="rg-top"><a class="brand" href="./">🧒 แจ้งผลการประเมินปฐมวัย 2568</a><span class="grow"></span>
+  <button class="btn theme-btn" type="button" data-theme-toggle aria-label="สลับโหมดมืด/สว่าง">🌙</button><a class="btn primary" href="./">เข้าสู่ระบบ</a></header>
+
+<main class="rg-wrap">
+  <section class="hero">
+    <h1>โปรแกรมแจ้งผลการประเมินความสามารถผู้เรียน<br>ระดับปฐมวัย (อนุบาล 1–3) หลักสูตร 2568</h1>
+    <p>บันทึกผลประเมิน 8 ด้าน 33 สภาพที่พึงประสงค์ สรุปผลอัตโนมัติ พิมพ์ "แบบรายงานผลความสามารถรายบุคคล" ได้ทันที — ใช้ผ่านเว็บ ไม่ต้องติดตั้ง ไม่ต้องเปิดมาโคร</p>
+  </section>
+
+  <section class="feat">
+    <div class="card"><h3>📝 กรอกง่าย</h3><p>พิมพ์ระดับ 1–3 ในตาราง เลื่อนช่องด้วยลูกศร ปุ่ม "เติม 3" ช่วยกรอกทั้งห้อง</p></div>
+    <div class="card"><h3>🧮 สรุปผลอัตโนมัติ</h3><p>สรุปรายด้านรายภาคเรียนและภาพรวมตามเกณฑ์เดียวกับไฟล์ Excel (ฐานนิยม เสมอใช้ค่าสูงสุด)</p></div>
+    <div class="card"><h3>🖨 พิมพ์รายงาน</h3><p>รายงานรายบุคคลทั้งห้องและสรุปผลทั้งห้อง พิมพ์ A4 หรือบันทึกเป็น PDF</p></div>
+    <div class="card"><h3>🔒 ข้อมูลแยกตามโรงเรียน</h3><p>เข้าด้วยรหัสสิทธิ์โรงเรียน ใช้ได้หลายเครื่อง หลายห้อง (ชั้นละไม่เกิน 10 ห้อง) บันทึกอัตโนมัติบนคลาวด์</p></div>
+  </section>
+
+  <section class="card" id="pkg" hidden><h3>แพ็กเกจ</h3><div id="pkg-list" class="pkgs"></div></section>
+
+  <section class="card">
+    <h3>แบบฟอร์มขอสมัครใช้งาน</h3>
+    <p class="hint">กรอกข้อมูลแล้วผู้ดูแลจะติดต่อกลับเพื่อส่งรหัสสิทธิ์ให้โรงเรียน</p>
+    <form id="rg-form" autocomplete="on">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+      <div class="grid2">
+        <label class="fld"><span>ชื่อโรงเรียน *</span><input name="school" type="text" required maxlength="200" placeholder="โรงเรียนบ้านตัวอย่าง"></label>
+        <label class="fld"><span>สังกัด / เขตพื้นที่</span><input name="area" type="text" maxlength="200"></label>
+        <label class="fld"><span>ชื่อผู้ติดต่อ *</span><input name="contact" type="text" required maxlength="100"></label>
+        <label class="fld"><span>ตำแหน่ง</span><input name="position" type="text" maxlength="100"></label>
+        <label class="fld"><span>เบอร์โทรศัพท์ *</span><input name="phone" type="tel" required maxlength="30"></label>
+        <label class="fld"><span>LINE ID</span><input name="line_id" type="text" maxlength="60"></label>
+        <label class="fld"><span>อีเมล</span><input name="email" type="email" maxlength="120"></label>
+        <label class="fld"><span>จำนวนห้องเรียนปฐมวัยทั้งหมด</span><input name="rooms" type="number" min="1" max="60"></label>
+      </div>
+      <div class="fld" style="margin-top:10px"><span>ชั้นที่ต้องการ *</span>
+        <div class="gchk"><label><input type="checkbox" name="g" value="1"> อนุบาล 1</label><label><input type="checkbox" name="g" value="2"> อนุบาล 2</label><label><input type="checkbox" name="g" value="3"> อนุบาล 3</label></div></div>
+      <label class="fld" style="margin-top:10px"><span>หมายเหตุ</span><textarea name="note" rows="3" maxlength="1000"></textarea></label>
+      <button id="rg-go" class="btn primary wide" type="submit">ส่งคำขอ</button>
+      <p id="rg-err" class="err" role="alert"></p>
+    </form>
+    <div id="rg-ok" class="okbox" hidden><h3>✅ ส่งคำขอเรียบร้อย</h3><p>เลขที่คำขอ <b id="rg-ref"></b> — กรุณาแจ้งเลขนี้เมื่อติดต่อผู้ดูแล</p></div>
+  </section>
+
+  <section class="card"><h3>ติดต่อผู้ดูแล</h3><div id="contacts" class="row"></div></section>
+  <p class="fine">สงวนลิขสิทธิ์ตามกฎหมาย ห้ามนำไปแจก จ่าย ขายต่อ หรือแอบอ้าง</p>
+</main>
+<div id="toasts" class="toasts"></div>
+<script src="js/config.js?v=1"></script>
+<script src="js/register.js?v=1"></script>
+</body>
+</html>
